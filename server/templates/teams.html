@@ -1,0 +1,14 @@
+{% extends "global.html" %}
+
+{% block title %} Teams {% endblock %}
+
+{% block content %}
+  {% if teams %}
+
+  {% for team in teams %}
+    <a href="/team/{{ team['_id'] }}"> {{ team['name'] }}</a></br>
+  {% endfor %}
+
+  {% endif %}
+
+{% endblock %}

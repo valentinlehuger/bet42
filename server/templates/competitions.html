@@ -1,0 +1,14 @@
+{% extends "global.html" %}
+
+{% block title %} Competitions {% endblock %}
+
+{% block content %}
+  {% if competitions %}
+
+  {% for competition in competitions %}
+    <a href="/competition/{{ competition['_id'] }}"> {{ competition['name'] }}</a></br>
+  {% endfor %}
+
+  {% endif %}
+
+{% endblock %}

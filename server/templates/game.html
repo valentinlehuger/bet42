@@ -1,0 +1,95 @@
+{% extends "global.html" %}
+
+{% block js_namespace %}/game{% endblock %}
+
+{% block custom_javascript %}
+
+  $(document).ready( function() {
+    $('div#predict-choice-div').hide();
+  });
+
+  $('div#refresh').click( function() {
+    socket.emit("refresh-game", {game_id: "{{ game['_id'] }}" });
+  });
+
+  $('div#predict-button').click( function() {
+    if ($('div#predict-choice-div').is(':visible') == true) {
+      $('div#predict-choice-div').hide();
+    } else {
+      socket.emit("get-nn-list");
+      $('div#predict-choice-div').show();
+    }
+  });
+
+  socket.on('add-predict-obj', function(obj_lst) {
+    $('ul#nn-list').html("");
+    obj_lst.forEach(function(elem) {
+      $('ul#nn-list').append("<li><div id='nn-choice'>" + elem['name'] + "</div></li>");
+    });
+  });
+
+  $('ul#nn-list').on('click', 'div#nn-choice', function(e) {
+  socket.emit("predict-game", {"game": "{{ game["_id"] }}", "name": $(e.target).text()})
+  });
+
+  socket.on('add-prediction', function(datas) {
+    $('div#nn-choice:contains('+ datas["name"] +')').append(" " + datas["home"] + " | " + datas["X"] + " | " + datas["away"]);
+  });
+
+{% endblock %}
+
+
+{% block title %} {{ game["team_H"]["name"] }} - {{ game["team_A"]["name"] }} {% endblock %}
+
+{% block content %}
+
+  {% if game %}
+
+    <h2><a href="/team/{{ game['team_H']['_id'] }}"> {{ game["team_H"]["name"] }} </a> - <a href="/team/{{ game['team_A']['_id'] }}"> {{ game["team_A"]["name"] }} </a></h2>
+
+    <div id="game-info">
+      Competition : {{ game['division']['name'] }} {{ game['season'] }} </br>
+      Stadium : {{ game['stadium'] }} </br>
+      Date : {{ game['date'] }} </br>
+      Start time : {{ game['start_time'] }} </br>
+      <div id="played-game">
+        {% if game['score'] %}
+          Score : {{ game['score']['final']['home'] }} - {{ game['score']['final']['away'] }} (HT : {{ game['score']['half_time']['home'] }} - {{ game['score']['half_time']['away'] }})</br>
+        {% endif %}
+      </div>
+    </div>
+
+    <div id="stats">
+      {% if game['possession'] %}
+        Possesion : {{ game['possession']['home'] }}/{{ game['possession']['away'] }} </br>
+      {% endif %}
+      {% if game['fouls'] %}
+        Fouls : {{ game['fouls']['home'] }}/{{ game['fouls']['away'] }} </br>
+      {% endif %}
+      {% if game['shoots'] %}
+        Shoots : {{ game['shoots']['home'] }}/{{ game['shoots']['away'] }} </br>
+      {% endif %}
+      {% if game['shoots_on_target'] %}
+        Shoots on target : {{ game['shoots_on_target']['home'] }}/{{ game['shoots_on_target']['away'] }} </br>
+      {% endif %}
+      {% if game['corners'] %}
+        Corners : {{ game['corners']['home'] }}/{{ game['corners']['away'] }} </br>
+      {% endif %}
+      {% if game[] %}
+        : {{ game[] }} </br>
+      {% endif %}
+    </div>
+    </br>
+    <a href="http://fr.soccerway.com{{ game['link'] }}"> {{ game['link'] }} </a>
+    </br>
+    <div id="refresh">Refresh</div>
+    <div id="predict">
+      <div id="predict-button">Predict</div>
+      <div id="predict-choice-div">
+        <ul id="nn-list">
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+
+{% endblock %}

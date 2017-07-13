@@ -1,0 +1,57 @@
+============ PRONO_FOOT ==============
+
+1. PREMIERE PHASE : récupération des données
+	-> fonction pour déduire le classement pour une journée donnée
+
+
+========== BWIN ==========
+retranscrire les données en un json
+
+
+bets
+{
+	"0" : {
+		"game" : id,
+		"bet" : H | N | A,
+		"cote" : float,
+		"mise" : float
+	},
+	"1" : {...}
+}
+
+
+games
+{
+	"team_H" : id,
+	"team_A" : id,
+	"competition" : id,
+	"score" : {
+		score_H : int,
+		score_A : int
+	},
+	"date" : float
+}
+
+
+teams
+{
+	"name" : str,
+	"aliases": [str, str, ...]
+	"country" : id
+}
+
+
+championships
+{
+	"name" : str,
+	"country" : id,
+	"division": int,
+	"2014" : {
+		"teams" : [id, id, ...],
+		"days": {
+			"1" : [game_id, game_id, ...],
+			"2" : [game_id, game_id, ...],
+			...
+		}
+	}
+}

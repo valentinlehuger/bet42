@@ -1,0 +1,18 @@
+{% extends "global.html" %}
+
+{% block title %} {{ team["name"] }} {% endblock %}
+
+{% block content %}
+  {% if team %}
+    <h2>Team page</h2>
+    <table>
+      {% for key in team %}
+        <tr>
+          <td> {{ key }} </td>
+          <td> {{ team[key] }} </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+
+{% endblock %}

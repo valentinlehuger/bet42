@@ -1,0 +1,10 @@
+Carnet de bord BET42
+
+2016/01/23
+Visblement la recuperation des matchs du jour courant ne fonctionne pas surement a cause d'une difference dans le html.
+TODO: verifier si le 24/01 je peux recuperer les matchs du 23 pour appuyer l'hypothese
+Si hypothese validee -> scripts devra recuperer les matchs des 5 prochains jours
+
+Ajouter la recherche d'un match par id des equipes et id soccerway
+Pour pouvoir verifier si un match est deja en db et sinon l'ajouter
+Verifier si le championnat est autorisee dans un dictionnaire a part qui sauvegardera les matchs non autorises.

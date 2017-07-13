@@ -1,0 +1,6 @@
+ghostdriver.log
+*.pyc
+*~
+.mongolab_register
+data/crawl_soccerway_FR/games/*updated*
+notebooks/.ipynb_checkpoints/

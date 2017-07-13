@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+
+    {% block import_javascript %}
+      <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+      <script type="text/javascript" charset="utf-8">
+
+          $(document).ready(function(){
+              namespace="{% block js_namespace %}{% endblock %}";
+              var socket = io.connect('http://' + document.domain + ':' + location.port + namespace);
+
+          {% block custom_javascript %}
+          {% endblock %}
+
+          });
+        </script>
+    {% endblock %}
+
+
+    {% block head %}
+      <title>{% block title %}{% endblock %} - BET 42</title>
+      <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+      <style type= "text/css">
+      html {
+       font-family: 'Lato', sans-serif;
+      }
+      </style>
+    {% endblock %}
+  </head>
+
+  <body>
+    <h1><a href="/">{% block main_title %} BET 42 {% endblock %}</a></h1>
+
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+      {% block footer %}
+        &copy; Copyright 2015 by vlehuger.
+      {% endblock %}
+    </div>
+  </body>
+
+</html>

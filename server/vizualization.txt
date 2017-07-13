@@ -1,0 +1,33 @@
+
+
+ORGANIZATION
+
+/
+
+- Last 3 days games by competition
+- Next 3 days games by competition
+
+/teams
+- list of teams
+
+/team/id
+
+/championships
+- list of teams
+
+/championship/id
+
+
+/game/id
+
+
+/date/YEAR_MONTH_DAY
+- games at this day
+
+
+
+
+
+TODO
+end refresh button in game page
+add a variable last_refresh

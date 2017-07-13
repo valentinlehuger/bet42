@@ -1,0 +1,100 @@
+{% extends "global.html" %}
+
+
+{% block title %}Home{% endblock %}
+
+{% block js_namespace %}/index{% endblock %}
+
+{% block custom_javascript %}
+
+$(document).ready( function() {
+  $('ul#predict-obj-list').hide();
+});
+
+$('div#predict-button').click(function() {
+  if ($('ul#predict-obj-list[championship="' + $(this).attr("championship") + '"]').is(":visible") == true) {
+    $('ul#predict-obj-list[championship="' + $(this).attr("championship") + '"]').hide();
+  } else {
+    socket.emit('get-nn-list-championship', $(this).attr("championship"));
+    $('ul#predict-obj-list[championship="' + $(this).attr("championship") + '"]').show();
+  }
+});
+
+socket.on('add-predict-obj', function(datas) {
+  datas["list"].forEach(function (elem) {
+    $('ul#predict-obj-list[championship="' + datas["championship"] + '"]').append("<li><div id='nn-choice'>" + elem['name'] + "</div></li>");
+  });
+});
+
+$('ul#predict-obj-list').on('click', 'div#nn-choice', function(e) {
+    socket.emit("predict-games", {"games": "{{ params["next_games_ids"] }}", "championship": $(this).parent().parent().attr("championship"), "name": $(e.target).text()})
+});
+
+socket.on('add-predictions', function(datas) {
+  for (var key in datas) {
+    $('tr[game_id="'+ key +'"]').append("<td>" + datas[key][0] + " | " + datas[key][1] + " | " + datas[key][2] + "</td>");
+  }
+});
+
+{% endblock %}
+
+{% block content %}
+
+  <div id="menu">
+    <h3>
+      <ul>
+        <li><a href="/teams">Teams</a></li>
+        <li><a href="/competitions">Competitions</a></li>
+        <li><a href="/training">Training</a></li>
+      </ul>
+    </h3>
+  </div>
+
+  {% if params["last_games"] %}
+    <h2>Last games</h2>
+    <table>
+      {% for competition in params["last_games"] %}
+      <tr><td><h4> {{ params["last_games"][competition]["name"] }} </h4></td></tr>
+        {% for game in params["last_games"][competition]["games"] %}
+          <tr>
+            <td> <a>{{ game["date"] }}</a></td>
+            <td> <a href="/team/{{ game['team_H']['_id'] }}">{{ game["team_H"]["name"] }}</a></td>
+            <td> <a href="/team/{{ game['team_A']['_id'] }}">{{ game["team_A"]["name"] }}</a></td>
+            <td> <a href="/game/{{ game['_id'] }}">+infos</a></td>
+            {% if "final" in game["score"] and "home" in game["score"]["final"] and game["score"]["final"]["home"] != ""  %}
+              <td> {{game["score"]["final"]["home"]}} - {{game["score"]["final"]["away"]}} </td>
+            {%endif%}
+          </tr>
+        {% endfor %}
+      {% endfor %}
+    </table>
+  {% endif %}
+
+  {% if params["next_games"] %}
+    <h2>Next games</h2>
+    <table>
+      {% for competition in params["next_games"] %}
+        <tr>
+          <td><h4> {{ params["next_games"][competition]["name"] }} </h4></td>
+          <td>
+            <div id="predict-div">
+              <div id='predict-button' championship='{{ params["next_games"][competition]["name"] }}'>predict</div>
+              <ul id='predict-obj-list' championship='{{ params["next_games"][competition]["name"] }}'>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        {% for game in params["next_games"][competition]["games"] %}
+        <tr game_id="{{ game['_id'] }}" >
+          <!-- <td> <a>{{ game["link"] }}</a></td> -->
+          <td> <a>{{ game["date"] }}</a></td>
+          <td> <a href="/team/{{ game['team_H']['_id'] }}">{{ game["team_H"]["name"] }}</a></td>
+          <td> <a href="/team/{{ game['team_A']['_id'] }}">{{ game["team_A"]["name"] }}</a></td>
+          <td> <a href="/game/{{ game['_id'] }}">+infos</a></td>
+          <!-- <td> <a href="/removegame/{{ game['_id'] }}"> remove this game </a></td> -->
+        </tr>
+        {% endfor %}
+      {% endfor %}
+    </table>
+  {% endif %}
+{% endblock %}

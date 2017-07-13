@@ -1,0 +1,200 @@
+{
+	"gueugnon": {
+		"country": "france"
+	},
+	"rc paris": {
+		"country": "france"
+	},
+	"toulouse": {
+		"country": "france"
+	},
+	"nancy": {
+		"country": "france"
+	},
+	"lille": {
+		"country": "france"
+	},
+	"metz": {
+		"country": "france"
+	},
+	"martigues": {
+		"country": "france"
+	},
+	"evian thonon gaillard": {
+		"country": "france",
+		"aliases": ["evian", "etg", "croix savoie"]
+	},
+	"angouleme": {
+		"country": "france"
+	},
+	"paris fc": {
+		"country": "france"
+	},
+	"boulogne": {
+		"country": "france"
+	},
+	"colmar": {
+		"country": "france"
+	},
+	"olympique de marseille" : {
+		"country": "france",
+		"aliases": ["marseille", "om"]
+  	},
+	"cort roubaix": {
+		"country": "france"
+	},
+	"sochaux": {
+		"country": "france"
+	},
+	"sete": {
+		"country": "france"
+	},
+	"angers": {
+		"country": "france"
+	},
+	"le havre": {
+		"country": "france"
+	},
+	"nimes": {
+		"country": "france"
+	},
+	"le mans": {
+		"country": "france"
+	},
+	"tours": {
+		"country": "france"
+	},
+	"cannes": {
+		"country": "france"
+	},
+	"brest": {
+		"country": "france"
+	},
+	"bordeaux": {
+		"country": "france"
+	},
+	"limoges": {
+		"country": "france"
+	},
+	"ac ajaccio": {
+		"country": "france"
+	},
+	"fc nancy": {
+		"country": "france"
+	},
+	"troyes": {
+		"country": "france"
+	},
+	"dijon": {
+		"country": "france"
+	},
+	"valenciennes": {
+		"country": "france"
+	},
+	"laval": {
+		"country": "france"
+	},
+	"aix en provence": {
+		"country": "france"
+	},
+	"st etienne": {
+		"country": "france",
+		"aliases": ["asse", "saint etienne"]
+	},
+	"avignon": {
+		"country": "france"
+	},
+	"lens": {
+		"country": "france"
+	},
+	"beziers": {
+		"country": "france"
+	},
+	"bastia": {
+		"country": "france"
+	},
+	"lorient": {
+		"country": "france"
+	},
+	"grenoble": {
+		"country": "france"
+	},
+	"caen": {
+		"country": "france"
+	},
+	"stade francais": {
+		"country": "france"
+	},
+	"nantes": {
+		"country": "france"
+	},
+	"istres": {
+		"country": "france"
+	},
+	"reims": {
+		"country": "france"
+	},
+	"olympique lyonnais" : {
+		"country": "france",
+		"aliases": ["lyon", "ol"]
+	},
+	"auxerre": {
+		"country": "france"
+	},
+	"strasbourg": {
+		"country": "france"
+	},
+	"montpellier": {
+		"country": "france"
+	},
+	"paris saint germain" : {
+		"country": "france",
+		"aliases": ["paris", "psg", "paris sg"]
+	},
+	"chateauroux": {
+		"country": "france"
+	},
+	"toulon": {
+		"country": "france"
+	},
+	"ales": {
+		"country": "france"
+	},
+	"niort": {
+		"country": "france"
+	},
+	"mulhouse": {
+		"country": "france"
+	},
+	"red star": {
+		"country": "france"
+	},
+	"arles": {
+		"country": "france",
+		"aliases": ["arles avignon"]
+	},
+	"rouen": {
+		"country": "france"
+	},
+	"monaco": {
+		"country": "france"
+	},
+	"sedan": {
+		"country": "france"
+	},
+	"rennes": {
+		"country": "france"
+	},
+	"guingamp": {
+		"country": "france"
+	},
+	"nice": {
+		"country": "france"
+	},
+	"creteil": {
+		"country": "france"
+	},
+	"orleans": {
+		"country": "france"
+	}
+}

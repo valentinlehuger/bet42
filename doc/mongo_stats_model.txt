@@ -1,0 +1,65 @@
+
+db bet42_stats - collection simulation
+   
+{
+    params : {
+        ntry: int,
+	maxEpok: int,
+	normalize: bool,
+	scale: bool,
+	cross_validation_percentage: float,
+	cross_validation_randomize : bool,
+	dataset: {
+	    src: [[str, str, str]],			// division id, start_date, end_date
+	    features: [str]
+	},
+	algorithm: {
+	    name: str,
+	    params: {
+		learning_rate: float,
+		momentum: float
+	    }
+	},
+	start_money : float,
+	percent_bet: float
+	simult_bet : int
+    },
+
+    results : {
+        win_percentage: {
+	    min: float,
+	    max: float,
+	    mean: float,
+	    median: float,
+	    standard_deviation: float
+	    variance: float
+	    mode: [float]
+	    lst: [float]
+	},
+        money_during_cross_validation: {
+	    min: float,
+	    max: float,
+	},
+        money_post_cross_validation: {
+	    min: float,
+	    max: float,
+	    mean: float,
+	    median: float,
+	    standard_deviation: float
+	    variance: float
+	    mode: [float]
+	    lst: [float]
+	},
+        mean_cotation: {
+	    min: float,
+	    max: float,
+	    mean: float,
+	    median: float,
+	    standard_deviation: float
+	    variance: float
+	    mode: [float]
+	    lst: [float]
+	},
+    }
+
+}

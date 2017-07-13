@@ -1,0 +1,51 @@
+## DATABASE DESCRIPTION
+
+The database is stored in mongodb(v2.6.5).
+The database comprises 3 collections :
+  - teams
+  - competitions
+  - games
+
+
+# COLLECTIONS
+
+The "teams" collection contains the information about each team.
+{
+	"_id" : ObjectId,
+	"link" : string,       // soccerway.com relative link of team (must be unique)
+	"name" : string        // name of team
+}
+
+The "competitions" collection contains the informations about each competition.
+{
+	"_id" : ObjectId,
+	"region" : string,     // name of the competition's region
+	"name" : string        // name of the competition
+}
+
+The "games" collection contains the informations about each game.
+{
+	"_id" : ObjectId,
+	"division" : ObjectId,     // reference of "competitions" collection
+  "season" : [               // season contains list of string
+		string,                  // start year
+		string                   // end year
+	]
+  "team_H" : ObjectId),      // team home reference of "teams" collection
+  "team_A" : ObjectId,       // team away reference of "teams" collection
+  "date" : string,           // formatted as YEAR_MONTH_DAY
+	"start_time" : string,
+	"score" : {
+		"half_time" : {
+			"home" : string,
+			"away" : string
+		},
+		"final" : {
+			"home" : string,
+			"away" : string
+		}
+	},
+	"link" : string        // soccerway.com relative link of team (must be unique)
+	"region" : string,     // region name
+	"stadium" : string,    // stadium name
+}
